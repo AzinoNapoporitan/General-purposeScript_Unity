@@ -4,19 +4,28 @@ using UnityEngine.EventSystems;
 
 public class SceneScript : MonoBehaviour
 { 
-    public void DelayLoad_GameScene()
-    {
-        Debug.Log("ロードすると思う");
-        Invoke("Load_GameScene",2.0f);
-    }
+    public float WaitTime;
 
      public void Load_GameScene(BaseEventData data)
     {
+        StartCoroutine(GameScene(WaitTime));
+    }
+       public void Load_TitletScene(BaseEventData data)
+    {
+        StartCoroutine(TitleScene(WaitTime));
+    }
+
+    IEnumerator GameScene(float WaitTime)
+    {
+        Debug.Log("Gameをロード");
+        yield return new WaitForSeconds(WaitTime);
         SceneManager.LoadScene("1_1_Game");
     }
 
-    public void Load_TitleScene(BaseEventData data)
+        IEnumerator TitleScene(float WaitTime)
     {
+        Debug.Log("Titleをロード");
+        yield return new WaitForSeconds(WaitTime);
         SceneManager.LoadScene("0_1_Title");
     }
 
@@ -25,5 +34,4 @@ public class SceneScript : MonoBehaviour
         Application.Quit();
     }
 
-  
 }
