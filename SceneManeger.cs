@@ -6,7 +6,7 @@ public class SceneScript : MonoBehaviour
 { 
     public float WaitTime;
 
-     public void Load_GameScene(BaseEventData data)
+     public void Load_ReloadScene(BaseEventData data)
     {
         StartCoroutine(GameScene(WaitTime));
     }
@@ -15,11 +15,11 @@ public class SceneScript : MonoBehaviour
         StartCoroutine(TitleScene(WaitTime));
     }
 
-    IEnumerator GameScene(float WaitTime)
+    IEnumerator ReloadScene(float WaitTime)
     {
         Debug.Log("Gameをロード");
         yield return new WaitForSeconds(WaitTime);
-        SceneManager.LoadScene("1_1_Game");
+        SceneManager.LoadScene(SceneManager.GetActiveSene().name);
     }
 
         IEnumerator TitleScene(float WaitTime)
